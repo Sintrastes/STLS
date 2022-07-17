@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  IntArithAlg.swift
 //  
 //
 //  Created by Nathan Bedell on 7/17/22.
