@@ -22,15 +22,17 @@ struct LambdaAlgInterpreter: LambdaAlg {
     }
 }
 
-struct LambdaAlgSerializer: LambdaAlg {
+class LambdaAlgSerializer: GenSymImpl & LambdaAlg {
     typealias F = ConstPartial<RawExpr>
     
     static func fun<A, B>(_ f: @escaping (ConstOf<RawExpr, A>) -> ConstOf<RawExpr, B>) -> ConstOf<RawExpr, (A) -> B> {
+        let x = genSym(prefix: "x")
+        
         return Const(
             RawExpr.lam(
-                identifier: "x",
+                identifier: x,
                 body: f(
-                    Const(RawExpr.variable(identifier: "x"))
+                    Const(RawExpr.variable(identifier: x))
                 )^.value)
         )
     }
