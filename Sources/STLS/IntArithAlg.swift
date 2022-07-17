@@ -19,13 +19,13 @@ protocol IntArithAlg {
 struct IntArithAlgInterpreter: IntArithAlg {
     typealias F = ForId
     
-    static func int(_ x: Int) -> Kind<ForId, Int> { return Id(value: x) }
+    static func int(_ x: Int) -> Kind<ForId, Int> { return Id(x) }
 
     static func add(_ first: Kind<ForId, Int>, _ second: Kind<ForId, Int>) -> Kind<ForId, Int> {
-        return Id(value: first.fix() + second.fix())
+        return Id(first^.value + second^.value)
     }
 
     static func times(_ first: Kind<ForId, Int>, _ second: Kind<ForId, Int>) -> Kind<ForId, Int> {
-        return Id(value: first.fix() * second.fix())
+        return Id(first^.value * second^.value)
     }
 }
