@@ -19,3 +19,9 @@ class Id<A> : Kind<ForId, A> {
         self.value = value
     }
 }
+
+extension Kind where F == ForId {
+    func fix() -> A {
+        return (self as! Id<A>).value
+    }
+}
