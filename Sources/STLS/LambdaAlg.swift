@@ -27,9 +27,11 @@ struct LambdaAlgSerializer: LambdaAlg {
     
     static func fun<A, B>(_ f: @escaping (ConstOf<RawExpr, A>) -> ConstOf<RawExpr, B>) -> ConstOf<RawExpr, (A) -> B> {
         return Const(
-            f(
-                Const(RawExpr.variable(identifier: "x"))
-            )^.value
+            RawExpr.lam(
+                identifier: "x",
+                body: f(
+                    Const(RawExpr.variable(identifier: "x"))
+                )^.value)
         )
     }
     
